@@ -7,8 +7,8 @@ function TeamDashboard() {
     <>
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
-      <MemberCard name="Amara Okafor" role="Frontend Developer" tasksCompleted={8} />
-      <MemberCard name="Daniel Mensah" role="TypeScript Developer" tasksCompleted={6} />
+      <MemberCard name="Amara Okafor" role="Frontend Developer" tasksCompleted={8} isActive />
+      <MemberCard name="Daniel Mensah" role="TypeScript Developer" tasksCompleted={6} isActive={false} />
     </>
   )
 }
