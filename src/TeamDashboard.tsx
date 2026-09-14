@@ -1,11 +1,14 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
 // Author: Walusansa Jesse Kisaale
+// Contributor: Beni Niyogisubizo
+// Contribution: Integrated Tasks 31–35 — team score controls
 // CSS import added by: Frida Kayiranga
 import './TeamDashboard.css'
 import { useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import MemberCard from './MemberCard'
+import ScoreControls from './ScoreControls'
 import type { Member } from './types'
 
 // Task 42: Array State (Typed) — starting data for the dashboard
@@ -90,6 +93,8 @@ function TeamDashboard() {
     <div className="dashboard">
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
+
+      <ScoreControls />
 
       <form onSubmit={handleAddMember}>
         <input
