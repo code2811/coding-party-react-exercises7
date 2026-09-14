@@ -13,6 +13,7 @@ function MemberCard({ name, role, tasksCompleted, isActive }: MemberCardProps) {
       <h3>{name}</h3>
       <p>{role}</p>
       <p>Tasks completed: {tasksCompleted}</p>
+      <p>Status: {isActive ? 'Active' : 'Inactive'}</p>
     </div>
   )
 }
