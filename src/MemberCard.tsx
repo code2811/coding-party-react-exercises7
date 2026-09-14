@@ -1,9 +1,21 @@
 // Author: Jongkuch Isaac Chol Anyar
-function MemberCard() {
+// Author: Olive Umurerwa
+interface MemberCardProps {
+  name: string
+  role: string
+  tasksCompleted?: number
+  isActive: boolean
+  bio?: string
+}
+
+function MemberCard({ name, role, tasksCompleted = 0, isActive, bio }: MemberCardProps) {
   return (
-    <div>
-      <h3>Member Name</h3>
-      <p>Member Role</p>
+    <div data-active={isActive}>
+      <h3>{name}</h3>
+      <p>{role}</p>
+      <p>Tasks completed: {tasksCompleted}</p>
+      <p>Status: {isActive ? 'Active' : 'Inactive'}</p>
+      {bio && <p>{bio}</p>}
     </div>
   )
 }
