@@ -2,6 +2,15 @@
 
 /* Task 22 - className targets: .card, .card__name, .card__role, .card__status, .card__bio */
 
+/* Task 24 - Card padding, border, spacing and background */
+.card {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin: 8px;
+}
+
 /* Task 23 - CSS rules for card elements */
 .card__name {
   font-size: 1.2rem;
