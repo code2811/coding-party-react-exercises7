@@ -8,13 +8,14 @@ interface MemberCardProps {
   bio?: string
 }
 
-function MemberCard({ name, role, tasksCompleted, isActive }: MemberCardProps) {
+function MemberCard({ name, role, tasksCompleted, isActive, bio }: MemberCardProps) {
   return (
     <div data-active={isActive}>
       <h3>{name}</h3>
       <p>{role}</p>
       <p>Tasks completed: {tasksCompleted}</p>
       <p>Status: {isActive ? 'Active' : 'Inactive'}</p>
+      {bio && <p>{bio}</p>}
     </div>
   )
 }
