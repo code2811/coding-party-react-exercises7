@@ -1,4 +1,5 @@
 // Author: Jongkuch Isaac Chol Anyar
+// Author: Olive Umurerwa
 import MemberCard from './MemberCard'
 
 function TeamDashboard() {
@@ -6,8 +7,8 @@ function TeamDashboard() {
     <>
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
-      <MemberCard />
-      <MemberCard />
+      <MemberCard name="Amara Okafor" role="Frontend Developer" />
+      <MemberCard name="Daniel Mensah" role="TypeScript Developer" />
     </>
   )
 }
