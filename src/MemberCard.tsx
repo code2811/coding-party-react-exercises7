@@ -1,11 +1,12 @@
 // Author: Jongkuch Isaac Chol Anyar
-function MemberCard() {
-  return (
-    <div>
-      <h3>Member Name</h3>
-      <p>Member Role</p>
-    </div>
-  )
+// Author: Olive Umurerwa
+interface MemberCardProps {
+  name: string
+  role: string
+}
+
+function MemberCard({ name, role }: MemberCardProps) {
+  return <div />
 }
 
 export default MemberCard
