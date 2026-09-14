@@ -1,5 +1,8 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
+// CSS import added by: Frida Kayiranga
+import './MemberCard.css'
+
 interface MemberCardProps {
   name: string
   role: string
@@ -10,12 +13,14 @@ interface MemberCardProps {
 
 function MemberCard({ name, role, tasksCompleted = 0, isActive, bio }: MemberCardProps) {
   return (
-    <div data-active={isActive}>
-      <h3>{name}</h3>
-      <p>{role}</p>
-      <p>Tasks completed: {tasksCompleted}</p>
-      <p>Status: {isActive ? 'Active' : 'Inactive'}</p>
-      {bio && <p>{bio}</p>}
+    <div className={`card ${isActive ? 'card--active' : 'card--inactive'}`}>
+      <h3 className="card__name" style={{ fontWeight: 'bold' }}>{name}</h3>
+      <p className="card__role">{role}</p>
+      <p className="card__tasks">Tasks completed: {tasksCompleted}</p>
+      <p className={`card__status ${isActive ? 'status--active' : 'status--inactive'}`}>
+        {isActive ? 'Active' : 'Inactive'}
+      </p>
+      {bio && <p className="card__bio">{bio}</p>}
     </div>
   )
 }
