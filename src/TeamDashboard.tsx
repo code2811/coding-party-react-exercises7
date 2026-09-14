@@ -2,6 +2,8 @@
 // Author: Olive Umurerwa
 // Contributor: Beni Niyogisubizo
 // Contribution: Integrated Tasks 31–40 — score controls and member form
+// CSS import added by: Frida Kayiranga
+import './TeamDashboard.css'
 import AddMemberForm from './AddMemberForm'
 import MemberCard from './MemberCard'
 import ScoreControls from './ScoreControls'
@@ -39,7 +41,7 @@ function TeamDashboard() {
   }
 
   return (
-    <>
+    <div className="dashboard">
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
 
@@ -47,17 +49,19 @@ function TeamDashboard() {
 
       <AddMemberForm onAddMember={handleAddMember} />
 
-      {members.map((member) => (
-        <MemberCard
-          key={member.id}
-          name={member.name}
-          role={member.role}
-          tasksCompleted={member.tasksCompleted}
-          isActive={member.isActive}
-          bio={member.bio}
-        />
-      ))}
-    </>
+      <div className="dashboard__cards">
+        {members.map((member) => (
+          <MemberCard
+            key={member.id}
+            name={member.name}
+            role={member.role}
+            tasksCompleted={member.tasksCompleted}
+            isActive={member.isActive}
+            bio={member.bio}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 

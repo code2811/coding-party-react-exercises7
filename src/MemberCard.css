@@ -1,0 +1,61 @@
+/* Author: Frida Kayiranga */
+
+/* Task 22 - className targets: .card, .card__name, .card__role, .card__status, .card__bio */
+
+/* Task 24 - Card padding, border, spacing and background */
+.card {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin: 8px;
+}
+
+/* Task 23 - CSS rules for card elements */
+.card__name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0 0 4px;
+  text-transform: capitalize; /* Task 25 - extra class style */
+}
+
+.card__role {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.card__status {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+}
+
+.card__bio {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+
+/* Task 26 - Dynamic classes based on isActive */
+.card--active {
+  border-left: 4px solid #22c55e;
+}
+
+.card--inactive {
+  border-left: 4px solid #ef4444;
+  opacity: 0.7;
+}
+
+.status--active {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.status--inactive {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* Task 28 - MemberCard styles kept separate from App/Dashboard styles */
+/* Task 27 - Inline style applied directly in MemberCard.tsx: style={{ fontWeight: 'bold' }} */
