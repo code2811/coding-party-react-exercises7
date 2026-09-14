@@ -38,7 +38,6 @@ src/
 ├── MemberCard.tsx        # Member card component
 ├── MemberCard.css        # Card styling
 ├── ScoreControls.tsx     # Team score increment/decrement controls
-├── AddMemberForm.tsx     # Controlled add-member form (name-only variant)
 ├── types.ts              # Shared Member interface
 ├── index.css             # Global base styles
 └── main.tsx              # App entry point
