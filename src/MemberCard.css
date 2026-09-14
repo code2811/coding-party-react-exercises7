@@ -56,3 +56,6 @@
   color: #ef4444;
   font-weight: bold;
 }
+
+/* Task 28 - MemberCard styles kept separate from App/Dashboard styles */
+/* Task 27 - Inline style applied directly in MemberCard.tsx: style={{ fontWeight: 'bold' }} */
