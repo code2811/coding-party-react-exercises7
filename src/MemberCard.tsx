@@ -6,7 +6,12 @@ interface MemberCardProps {
 }
 
 function MemberCard({ name, role }: MemberCardProps) {
-  return <div />
+  return (
+    <div>
+      <h3>{name}</h3>
+      <p>{role}</p>
+    </div>
+  )
 }
 
 export default MemberCard
