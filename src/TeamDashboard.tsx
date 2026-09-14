@@ -1,4 +1,6 @@
 // Author: Walusansa Jesse Kisaale
+import { useState } from 'react'
+import type { ChangeEvent, FormEvent } from 'react'
 import MemberCard from './MemberCard'
 import type { Member } from './types'
 
@@ -22,6 +24,38 @@ const initialMembers: Member[] = [
 ]
 
 function TeamDashboard() {
+  const [members, setMembers] = useState<Member[]>(initialMembers)
+  const [newName, setNewName] = useState<string>('')
+  const [newRole, setNewRole] = useState<string>('')
+
+  function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewName(event.target.value)
+  }
+
+  function handleRoleChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewRole(event.target.value)
+  }
+
+  function handleAddMember(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const trimmedName = newName.trim()
+    const trimmedRole = newRole.trim()
+    if (!trimmedName || !trimmedRole) return
+
+    const newMember: Member = {
+      id: Date.now(),
+      name: trimmedName,
+      role: trimmedRole,
+      tasksCompleted: 0,
+      isActive: true,
+    }
+
+    setMembers((prevMembers) => [...prevMembers, newMember])
+    setNewName('')
+    setNewRole('')
+  }
+
   const handleRemoveMember = (_id: number) => undefined
   const handleToggleActive = (_id: number) => undefined
 
@@ -30,8 +64,24 @@ function TeamDashboard() {
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
 
+      <form onSubmit={handleAddMember}>
+        <input
+          type="text"
+          placeholder="Member name"
+          value={newName}
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          placeholder="Member role"
+          value={newRole}
+          onChange={handleRoleChange}
+        />
+        <button type="submit">Add Member</button>
+      </form>
+
       <div className="dashboard-grid">
-        {initialMembers.map((member) => (
+        {members.map((member) => (
           <MemberCard
             key={member.id}
             member={member}
