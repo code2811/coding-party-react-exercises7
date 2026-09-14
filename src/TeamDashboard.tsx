@@ -56,8 +56,17 @@ function TeamDashboard() {
     setNewRole('')
   }
 
-  const handleRemoveMember = (_id: number) => undefined
-  const handleToggleActive = (_id: number) => undefined
+  function handleRemoveMember(id: number) {
+    setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id))
+  }
+
+  function handleToggleActive(id: number) {
+    setMembers((prevMembers) =>
+      prevMembers.map((member) =>
+        member.id === id ? { ...member, isActive: !member.isActive } : member
+      )
+    )
+  }
 
   return (
     <>
