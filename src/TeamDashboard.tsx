@@ -1,5 +1,7 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
+// CSS import added by: Frida Kayiranga
+import './TeamDashboard.css'
 import MemberCard from './MemberCard'
 
 interface TeamMember {
@@ -31,20 +33,22 @@ function TeamDashboard() {
   ]
 
   return (
-    <>
+    <div className="dashboard">
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
-      {members.map((member) => (
-        <MemberCard
-          key={member.id}
-          name={member.name}
-          role={member.role}
-          tasksCompleted={member.tasksCompleted}
-          isActive={member.isActive}
-          bio={member.bio}
-        />
-      ))}
-    </>
+      <div className="dashboard__cards">
+        {members.map((member) => (
+          <MemberCard
+            key={member.id}
+            name={member.name}
+            role={member.role}
+            tasksCompleted={member.tasksCompleted}
+            isActive={member.isActive}
+            bio={member.bio}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
