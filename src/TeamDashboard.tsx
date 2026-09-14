@@ -1,8 +1,12 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
+// Contributor: Beni Niyogisubizo
+// Contribution: Integrated Tasks 31–40 — score controls and member form
 // CSS import added by: Frida Kayiranga
 import './TeamDashboard.css'
+import AddMemberForm from './AddMemberForm'
 import MemberCard from './MemberCard'
+import ScoreControls from './ScoreControls'
 
 interface TeamMember {
   id: number
@@ -32,10 +36,19 @@ function TeamDashboard() {
     },
   ]
 
+  const handleAddMember = (name: string): void => {
+    console.log(`Submitted member: ${name}`)
+  }
+
   return (
     <div className="dashboard">
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
+
+      <ScoreControls />
+
+      <AddMemberForm onAddMember={handleAddMember} />
+
       <div className="dashboard__cards">
         {members.map((member) => (
           <MemberCard
