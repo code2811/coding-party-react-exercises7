@@ -1,3 +1,28 @@
 /* Author: Frida Kayiranga */
 
 /* Task 22 - className targets: .card, .card__name, .card__role, .card__status, .card__bio */
+
+/* Task 23 - CSS rules for card elements */
+.card__name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0 0 4px;
+}
+
+.card__role {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.card__status {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+}
+
+.card__bio {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
