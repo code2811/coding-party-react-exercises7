@@ -1,44 +1,93 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
+// Author: Walusansa Jesse Kisaale
 // Contributor: Beni Niyogisubizo
-// Contribution: Integrated Tasks 31–40 — score controls and member form
+// Contribution: Integrated Tasks 31–35 — team score controls
 // CSS import added by: Frida Kayiranga
 import './TeamDashboard.css'
-import AddMemberForm from './AddMemberForm'
+import { useState } from 'react'
+import type { ChangeEvent, FormEvent } from 'react'
 import MemberCard from './MemberCard'
 import ScoreControls from './ScoreControls'
+import type { Member } from './types'
 
-interface TeamMember {
-  id: number
-  name: string
-  role: string
-  tasksCompleted?: number
-  isActive: boolean
-  bio?: string
-}
+// Task 42: Array State (Typed) — starting data for the dashboard
+const initialMembers: Member[] = [
+  {
+    id: 1,
+    name: 'Amina Yusuf',
+    role: 'Frontend Developer',
+    tasksCompleted: 12,
+    isActive: true,
+    bio: 'Focused on component architecture.',
+  },
+  {
+    id: 2,
+    name: 'Brian Otieno',
+    role: 'Backend Developer',
+    tasksCompleted: 8,
+    isActive: false,
+  },
+]
+
+type StatusFilter = 'all' | 'active' | 'inactive'
 
 function TeamDashboard() {
-  const members: TeamMember[] = [
-    {
-      id: 1,
-      name: 'Amara Okafor',
-      role: 'Frontend Developer',
-      tasksCompleted: 8,
-      isActive: true,
-      bio: 'Builds accessible and responsive interfaces.',
-    },
-    {
-      id: 2,
-      name: 'Daniel Mensah',
-      role: 'TypeScript Developer',
-      tasksCompleted: 6,
-      isActive: false,
-    },
-  ]
+  const [members, setMembers] = useState<Member[]>(initialMembers)
+  const [newName, setNewName] = useState<string>('')
+  const [newRole, setNewRole] = useState<string>('')
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
-  const handleAddMember = (name: string): void => {
-    console.log(`Submitted member: ${name}`)
+  function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewName(event.target.value)
   }
+
+  function handleRoleChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewRole(event.target.value)
+  }
+
+  function handleAddMember(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const trimmedName = newName.trim()
+    const trimmedRole = newRole.trim()
+    if (!trimmedName || !trimmedRole) return
+
+    const newMember: Member = {
+      id: Date.now(),
+      name: trimmedName,
+      role: trimmedRole,
+      tasksCompleted: 0,
+      isActive: true,
+    }
+
+    setMembers((prevMembers) => [...prevMembers, newMember])
+    setNewName('')
+    setNewRole('')
+  }
+
+  function handleRemoveMember(id: number) {
+    setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id))
+  }
+
+  function handleToggleActive(id: number) {
+    setMembers((prevMembers) =>
+      prevMembers.map((member) =>
+        member.id === id ? { ...member, isActive: !member.isActive } : member
+      )
+    )
+  }
+
+  const visibleMembers = members
+    .filter((member) => {
+      if (statusFilter === 'active') return member.isActive
+      if (statusFilter === 'inactive') return !member.isActive
+      return true
+    })
+    .filter((member) =>
+      member.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+    )
 
   return (
     <div className="dashboard">
@@ -47,17 +96,47 @@ function TeamDashboard() {
 
       <ScoreControls />
 
-      <AddMemberForm onAddMember={handleAddMember} />
+      <form onSubmit={handleAddMember}>
+        <input
+          type="text"
+          placeholder="Member name"
+          value={newName}
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          placeholder="Member role"
+          value={newRole}
+          onChange={handleRoleChange}
+        />
+        <button type="submit">Add Member</button>
+      </form>
+
+      <div className="dashboard-filters">
+        <button type="button" onClick={() => setStatusFilter('all')}>
+          All
+        </button>
+        <button type="button" onClick={() => setStatusFilter('active')}>
+          Active
+        </button>
+        <button type="button" onClick={() => setStatusFilter('inactive')}>
+          Inactive
+        </button>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+      </div>
 
       <div className="dashboard__cards">
-        {members.map((member) => (
+        {visibleMembers.map((member) => (
           <MemberCard
             key={member.id}
-            name={member.name}
-            role={member.role}
-            tasksCompleted={member.tasksCompleted}
-            isActive={member.isActive}
-            bio={member.bio}
+            member={member}
+            onRemove={handleRemoveMember}
+            onToggleActive={handleToggleActive}
           />
         ))}
       </div>
