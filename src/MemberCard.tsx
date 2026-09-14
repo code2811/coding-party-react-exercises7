@@ -1,3 +1,5 @@
+// Author: Jongkuch Isaac Chol Anyar
+// Author: Olive Umurerwa
 // Author: Walusansa Jesse Kisaale
 import type { Member } from './types'
 
