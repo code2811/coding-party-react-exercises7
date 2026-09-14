@@ -36,3 +36,23 @@
   color: #777;
   margin: 0;
 }
+
+/* Task 26 - Dynamic classes based on isActive */
+.card--active {
+  border-left: 4px solid #22c55e;
+}
+
+.card--inactive {
+  border-left: 4px solid #ef4444;
+  opacity: 0.7;
+}
+
+.status--active {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.status--inactive {
+  color: #ef4444;
+  font-weight: bold;
+}
