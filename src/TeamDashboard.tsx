@@ -1,6 +1,8 @@
 // Author: Jongkuch Isaac Chol Anyar
 // Author: Olive Umurerwa
 // Author: Walusansa Jesse Kisaale
+// CSS import added by: Frida Kayiranga
+import './TeamDashboard.css'
 import { useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import MemberCard from './MemberCard'
@@ -85,7 +87,7 @@ function TeamDashboard() {
     )
 
   return (
-    <>
+    <div className="dashboard">
       <h1>Team Dashboard</h1>
       <p>A shared dashboard for tracking our team's progress.</p>
 
@@ -123,7 +125,7 @@ function TeamDashboard() {
         />
       </div>
 
-      <div className="dashboard-grid">
+      <div className="dashboard__cards">
         {visibleMembers.map((member) => (
           <MemberCard
             key={member.id}
@@ -133,7 +135,7 @@ function TeamDashboard() {
           />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

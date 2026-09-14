@@ -1,0 +1,21 @@
+/* Author: Frida Kayiranga */
+
+/* Task 30 - Flexbox layout for dashboard cards */
+.dashboard {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dashboard__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Task 29 - Responsive media query for smaller screens */
+@media (max-width: 600px) {
+  .dashboard__cards {
+    flex-direction: column;
+  }
+}
