@@ -23,10 +23,14 @@ const initialMembers: Member[] = [
   },
 ]
 
+type StatusFilter = 'all' | 'active' | 'inactive'
+
 function TeamDashboard() {
   const [members, setMembers] = useState<Member[]>(initialMembers)
   const [newName, setNewName] = useState<string>('')
   const [newRole, setNewRole] = useState<string>('')
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
     setNewName(event.target.value)
@@ -68,6 +72,16 @@ function TeamDashboard() {
     )
   }
 
+  const visibleMembers = members
+    .filter((member) => {
+      if (statusFilter === 'active') return member.isActive
+      if (statusFilter === 'inactive') return !member.isActive
+      return true
+    })
+    .filter((member) =>
+      member.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+    )
+
   return (
     <>
       <h1>Team Dashboard</h1>
@@ -89,8 +103,26 @@ function TeamDashboard() {
         <button type="submit">Add Member</button>
       </form>
 
+      <div className="dashboard-filters">
+        <button type="button" onClick={() => setStatusFilter('all')}>
+          All
+        </button>
+        <button type="button" onClick={() => setStatusFilter('active')}>
+          Active
+        </button>
+        <button type="button" onClick={() => setStatusFilter('inactive')}>
+          Inactive
+        </button>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+      </div>
+
       <div className="dashboard-grid">
-        {members.map((member) => (
+        {visibleMembers.map((member) => (
           <MemberCard
             key={member.id}
             member={member}
